@@ -1,27 +1,50 @@
-// INPUT
-// Chiedere all'utente il suo nome
-const userNameInput = document.getElementById("user-name")
+const userNameInput = document.getElementById("user-name");
+// Chiedere all'utente quanti kilometri deve percorrere
+const userKmInput = document.getElementById("kilometers")
+console.log(userKmInput, typeof userKmInput);
 
-// Chiedere all'utente di inserire quanti kilometri vuole percorrere
-const userKm = document.getElementById("kilometers")
+// Chiedere all'utente la sua età
+const userAgeInput = document.getElementById("user-age");
+console.log(userAgeInput, typeof userAgeInput);
 
-// Chiedere all'utente di inserire la sua l'età
-const userAge = document.getElementById("user-age")
+const submitBtn = document.getElementById("submit");
 
-// Quando l'utente clicca su submit
-const submitBtn = document.getElementById("submit")
+const nome = document.querySelector("h2");
+console.log(nome);
+const result = document.querySelector("p")
+console.log(result);
 
+// Al click sul bottone submit
 submitBtn.addEventListener("click", function () {
+    // Prendo i valori degli input
+    const userName = userNameInput.value;
+    console.log(userName);
+    const userKm = userKmInput.value;
+    console.log(userKm);
+    const userAge = userAgeInput.value;
+    console.log(userAge);
     
-})
+    const price = userKm * 0.21;
+    console.log(price);
+    
+    let discountPercentage = 0;
+    if (userAge < 18) {
+    discountPercentage = 20;
+    } else if (userAge > 65) {
+    discountPercentage = 40;
+    }
 
+    console.log(discountPercentage);
 
-// ELABORAZIONE
-// calcolo prezzo del biglietto (kilometri * 0.21)
+    let finalPrice = price - (price * discountPercentage / 100);
+    finalPrice = finalPrice.toFixed(2)
+    console.log(finalPrice);
 
-
-// SE l'età dell'utente è < 18 allora applica sconto 20%
-// ALTRIMENTI SE l'età dell'utente è > 65 allora applica sconto 40%
-
-// OUTPUT
-// comunica il prezzo finale all'utente
+    nome.innerHTML = `Ciao ${userName}`;
+    result.innerHTML = `Il prezzo del  tuo biglietto è ${finalPrice}`;
+    
+    // Ripulisco l'input
+    userNameInput.value = "";
+    userKmInput.value = "";
+    userAgeInput.value = "";
+  });
